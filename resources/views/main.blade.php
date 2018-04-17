@@ -6,9 +6,12 @@
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
 <html lang="{{ app()->getLocale() }}">
+    <title>
+        Inicio
+    </title>
 <style>
     #imaginary_container{
-        margin-top:70%; /* Don't copy this */
+        margin-top:70%;
     }
     .stylish-input-group .input-group-addon{
         background: white !important;
@@ -26,7 +29,30 @@
         font-size: 84px;
     }
 </style>
+<nav class="navbar navbar-default navbar-fixed-top">
 
+    <div class="container-fluid">
+
+
+
+        <div id="navbar-menu">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones <span></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{route('empresas.create')}}"><i class="lnr lnr-user"></i> <span>Registrar Empresa</span></a></li>
+                        <li><a href="#"><i class="lnr lnr-cog"></i> <span>Gestion de Empresas</span></a></li>
+
+                    </ul>
+                </li>
+                <!-- <li>
+                    <a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+</nav>
     <div class="content">
         <div class="title m-b-md" style="text-align: center;margin-top: 8%">
             BUSCADOR
