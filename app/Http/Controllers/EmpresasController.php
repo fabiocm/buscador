@@ -20,9 +20,17 @@ class EmpresasController extends Controller
     {
         $empresas = Empresa::all();
         $empresas->each(function($var){
-            $var['nombre'] = $var->nombre;
-            $var['descripcion'] = $var->descripcion;
+            $var['sucursales'] = $var->sucursales;
+
         });
+
+        for($i = 0; $i < count($empresas);$i++){
+            $s = 0;
+            for($j = 0; $j < count($empresas[$i]->sucursales);$j++){
+                $s++;
+            }
+            $empresas[$i]->cant_sucursales = $s;
+        }
 
 
         return view('empresa.ver_empresas',['empresas' => $empresas]);
@@ -93,7 +101,14 @@ class EmpresasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $palabras_claves = PalabraClave::where('empresa_id', $id)->get();
+
+        for ($i = 0; $i < count($palabras_claves); $i++){
+            $array[$i] = $palabras_claves[$i]->palabra;
+        }
+        $empresa = Empresa::find($id);
+        $empresa->palabras_clave = implode(',',$array);
+        return view('empresa.edit_empresa')->with('empresa',$empresa);
     }
 
     /**
@@ -101,11 +116,31 @@ class EmpresasController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request, [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'palabras_clave' => 'required',
+        ]);
+        $empresa = Empresa::find($id);
+        $palabras_claves = explode(',', $request->palabras_clave);
+        PalabraClave::where('empresa_id',$empresa->id)->delete();
+        if ($empresa->save()){
+
+                for($i = 0; $i < count($palabras_claves);$i++){
+                    $palabras_clave = new PalabraClave();
+                    $palabras_clave->palabra = $palabras_claves[$i];
+                    $palabras_clave->empresa_id = $empresa->id;
+                    $palabras_clave->save();
+                }
+            flash('La empresa fue guardada correctamente','info');
+        }
+        return Redirect::route('empresas.index');
+
     }
 
     /**

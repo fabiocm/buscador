@@ -17,6 +17,6 @@ Route::get('/', function () {
 
 Route::resource('empresas','EmpresasController');
 
-Route::get('/empresa',function(){
-    return view ('ver_empresa');
-});
+Route::resource('sucursales','SucursalesController');
+
+

@@ -23,6 +23,7 @@
 
     <th style="vertical-align: middle;text-align: left">Nombre</th>
     <th style="vertical-align: middle;text-align: left">Descripcion</th>
+    <th style="vertical-align: middle;text-align: left">Cant de Sucursales</th>
     <th style="vertical-align: middle;text-align: left">Acciones</th>
 @endsection
 
@@ -31,9 +32,13 @@
         <tr style="vertical-align: middle;text-align: left">
             <td style="vertical-align: middle;text-align: left;padding-left: 20px;">{{$empresa->nombre}}</td>
             <td style="vertical-align: middle;text-align: left;padding-left: 20px">{{$empresa->descripcion}}</td>
+            <td style="vertical-align: middle;text-align: left;padding-left: 20px">{{$empresa->cant_sucursales}}</td>
                 <td style="text-align: center;vertical-align: middle">
 
-
+                    <a href="{{route('sucursales.show',$empresa->id)}}" class="btn btn-default btn-sm"
+                       data-tooltip="tooltip" title="Ver Sucursales">
+                        <i class="fa fa-eye"></i>
+                    </a>
                     <a href="{{route('empresas.edit',$empresa->id)}}" class="btn btn-default btn-sm"
                        data-tooltip="tooltip" title="Editar">
                         <i class="fa fa-edit"></i>

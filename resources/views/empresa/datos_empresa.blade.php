@@ -35,11 +35,11 @@
 
 <div id="map"></div>
   <div id="infoPanel">
-    <!--
-    <b>Estado del marcador:</b>
+
+  {{--  <b>Estado del marcador:</b>
     <div id="markerStatus"><i>Sostener para mover el marcador.</i></div>
     <b>Coordenadas geográficas:</b>
-    <div id="info"></div>-->
+    <div id="info"></div>   --}}
     <b>Dirección aproximada:</b>
     <div id="address"></div>
   </div>

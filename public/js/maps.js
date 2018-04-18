@@ -1,6 +1,12 @@
 $(document).ready(function(){
   var geocoder = new google.maps.Geocoder();
-  var latLng = new google.maps.LatLng(-17.783261784915865, -63.18217782929685);
+    var lat = document.getElementById('latitud').value;
+    var long = document.getElementById('longitud').value;
+  if(lat !== '' || long !==''){
+      var latLng = new google.maps.LatLng(lat, long);
+  }else{
+      var latLng = new google.maps.LatLng(-17.783261784915865, -63.18217782929685);
+  }
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
     center: latLng,
@@ -85,8 +91,9 @@ function updateMarkerPosition(latLng) {
     latLng.lat(),
     latLng.lng()
   ].join(', ');*/
-  document.getElementById('longitud').value = latLng.lng();
-  document.getElementById('latitud').value = latLng.lat();
+
+    document.getElementById('longitud').value = latLng.lng();
+    document.getElementById('latitud').value = latLng.lat();
 
 }
 

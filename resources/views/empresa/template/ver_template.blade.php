@@ -1,10 +1,10 @@
 @extends('empresa.template.partials.nav_partial')
 @section('content')
 <body>
-
+    <div style="margin-left: 110px">
 
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-10">
                     <h1 class="page-header">@yield('tituloTabla','Default')</h1>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -15,7 +15,7 @@
             <!-- /.row -->
             <div class="row">
                 @section('tamañoTabla1')
-                <div class="col-lg-12">
+                <div class="col-lg-10">
                     @show
                     @section('arribaDeTabla')
 
@@ -86,7 +86,7 @@
             </div>
 
 
-
+    </div>
 </body>
 
 
