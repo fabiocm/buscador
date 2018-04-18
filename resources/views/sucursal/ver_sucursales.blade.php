@@ -3,7 +3,7 @@
 
 @section('title','Ver Sucursales de la empresa')
 
-@section('tituloTabla','Sucursales de la empresa ' . $nombre_empresa)
+@section('tituloTabla','Sucursales de la empresa ' . $empresa->nombre)
 
 @section('titulotabla2','Tabla de Sucursales')
 
@@ -18,7 +18,11 @@
     }
 
 </style>
-
+@section('boton')
+    {!! Form::open(['route' => ['sucursales.nueva',$empresa->id], 'method' => 'GET']) !!}
+        {!! Form::submit('Añadir sucursal',['class'=>'btn btn-warning','style'=>'margin-top:10px;margin-left:1040px']) !!}
+    {!! Form::close() !!}
+    @endsection
 @section('nombreColumnas')
 
     <th style="vertical-align: middle;text-align: left">Nombre</th>
@@ -29,7 +33,7 @@
 
 @section('contenidoTabla')
     @foreach($sucursales as $sucursal)
-        <tr style="vertical-align: middle;text-align: left">
+        <tr style="vertical-align: middle;text-align: left;margin-">
             <td style="vertical-align: middle;text-align: left;padding-left: 20px;">{{$sucursal->nombre}}</td>
             <td style="vertical-align: middle;text-align: left;padding-left: 20px">{{$sucursal->direccion}}</td>
             <td style="vertical-align: middle;text-align: left;padding-left: 20px">{{$sucursal->telefono}}</td>

@@ -1,6 +1,8 @@
 @extends('empresa.template.partials.nav_partial')
 @section('content')
-<body>
+@section('boton')
+@show
+    <body>
     <div style="margin-left: 110px">
 
             <div class="row">

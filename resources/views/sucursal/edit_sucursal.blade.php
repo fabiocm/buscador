@@ -15,7 +15,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Editar los datos de la sucursal {{$sucursal->nombre}} de la empresa {{$nombre_empresa}}
+                    Editar los datos de la sucursal {{$sucursal->nombre}} de la empresa {{$empresa->nombre}}
                 </div>
 
                 <div class="panel-body">
@@ -25,21 +25,21 @@
                     <div class="form-group" style="padding-top: 10px">
                         {!! Form::label(null,'Nombre:',['class'=>'col-md-3 control-label']) !!}
                         <div class="col-md-7">
-                            {!! Form::text('nombre',null,['class'=>'form-control input-md', 'placeholder' => 'Ingrese el nombre de la empresa']) !!}
+                            {!! Form::text('nombre',null,['class'=>'form-control input-md', 'placeholder' => 'Ingrese el nombre de la sucursal']) !!}
                         </div>
                     </div>
 
                     <div class="form-group">
                         {!! Form::label(null,'Direccion:',['class'=>'col-md-3 control-label']) !!}
                         <div class="col-md-7">
-                            {!! Form::text('direccion',null,['class'=>'form-control input-md', 'placeholder' => 'Ingrese una descripcion de la empresa']) !!}
+                            {!! Form::text('direccion',null,['class'=>'form-control input-md', 'placeholder' => 'Ingrese una direccion de la sucursal']) !!}
                         </div>
                     </div>
 
                     <div class="form-group">
                         {!! Form::label(null,'Telefono:',['class'=>'col-md-3 control-label']) !!}
                         <div class="col-md-7">
-                            {!! Form::text('telefono',null,['class'=>'form-control input-md', 'placeholder' => 'Ingrese palabras claves separadas por coma']) !!}
+                            {!! Form::text('telefono',null,['class'=>'form-control input-md', 'placeholder' => 'Ingrese el telefono de la sucursal']) !!}
                         </div>
                     </div>
 

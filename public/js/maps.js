@@ -2,7 +2,7 @@ $(document).ready(function(){
   var geocoder = new google.maps.Geocoder();
     var lat = document.getElementById('latitud').value;
     var long = document.getElementById('longitud').value;
-  if(lat !== '' || long !==''){
+  if(lat != '' || long != ''){
       var latLng = new google.maps.LatLng(lat, long);
   }else{
       var latLng = new google.maps.LatLng(-17.783261784915865, -63.18217782929685);

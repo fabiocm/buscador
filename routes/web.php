@@ -19,4 +19,7 @@ Route::resource('empresas','EmpresasController');
 
 Route::resource('sucursales','SucursalesController');
 
-
+Route::get('/sucursales/nueva/{id}',[
+    'as' => 'sucursales.nueva',
+    'uses' => 'SucursalesController@nueva'
+]);
