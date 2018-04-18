@@ -237,7 +237,21 @@
     .sidenav-heading{
         font-size: 36px;
         color: #fff;
-    }
+      }
+
+      #map {
+        width: 500px;
+        height: 400px;
+        float: center;
+        left : 300px;
+      }
+      #infoPanel {
+        float: center;
+        margin-left: 300px;
+      }
+      #infoPanel div {
+        margin-bottom: 5px;
+      }
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <title>@yield('title','Empresa')</title>
@@ -317,4 +331,10 @@
                 responsive: true
             });
         });
-    </script>
+        </script>
+
+        <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBi6WWtE0ZkGcW9atU9m9sFvvi-XH_tID8">
+        </script>
+
+        <script type="text/javascript"src = "{{asset('js/maps.js')}}"></script>
