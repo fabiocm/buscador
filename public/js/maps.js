@@ -1,6 +1,5 @@
 $(document).ready(function(){
   var geocoder = new google.maps.Geocoder();
-
   var latLng = new google.maps.LatLng(-17.783261784915865, -63.18217782929685);
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
@@ -15,35 +14,36 @@ $(document).ready(function(){
   });
 
 
-  var infoWindow = new google.maps.InfoWindow({map: map});
+    /*var infoWindow = new google.maps.InfoWindow({map: map});
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        latLng  = {
-          lat: pos.lat,
-          lng: pos.lng
-        };
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Localizacion encontrada.');
-        map.setCenter(pos);
-        marker.setPosition(pos);
-      }, function() {
-        handleLocationError(true, infoWindow, map.getCenter());
-      });
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            latLng  = {
+                lat: pos.lat,
+                lng: pos.lng
+            };
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Localizacion encontrada.');
+            map.setCenter(pos);
+            marker.setPosition(pos);
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
     } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }*/
 
 
   // Update current position info.
   updateMarkerPosition(latLng);
   geocodePosition(latLng);
+
 
   // Add dragging event listeners.
   //este es para la direccion
@@ -77,24 +77,27 @@ function geocodePosition(pos) {
 }
 
 function updateMarkerStatus(str) {
-  document.getElementById('markerStatus').innerHTML = str;
+  //document.getElementById('markerStatus').innerHTML = str;
 }
 
 function updateMarkerPosition(latLng) {
-  document.getElementById('info').innerHTML = [
+  /*document.getElementById('info').innerHTML = [
     latLng.lat(),
     latLng.lng()
-  ].join(', ');
+  ].join(', ');*/
+  document.getElementById('longitud').value = latLng.lng();
+  document.getElementById('latitud').value = latLng.lat();
+
 }
 
 function updateMarkerAddress(str) {
   document.getElementById('address').innerHTML = str;
 }
 //funcion de geolocalización
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+/*function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
                         'Error: La geolocalización fallo.' :
-                        'Error: Tu navegador no soporta la geolocalización.');}
+                        'Error: Tu navegador no soporta la geolocalización.');}*/
 
 });

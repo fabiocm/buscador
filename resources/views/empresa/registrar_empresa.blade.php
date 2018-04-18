@@ -57,6 +57,10 @@
             </div>
         </div>
     </div>
+
+    <input id="longitud" type="hidden" name="longitud" value=""/>
+    <input id="latitud" type="hidden" name="latitud" value=""/>
+
     {!! Form::close() !!}
 
 @endsection

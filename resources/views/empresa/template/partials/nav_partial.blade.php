@@ -277,7 +277,7 @@
                 <li class="upper-links dropdown" style="font-size: 25px;margin-top: 10px"><a class="links" href="#">Opciones</a>
                     <ul class="dropdown-menu">
                         <li class="profile-li"><a class="profile-links" href="{{route('empresas.create')}}">Registrar Empresa</a></li>
-                        <li class="profile-li"><a class="profile-links" href="#">Gestion de Empresas</a></li>
+                        <li class="profile-li"><a class="profile-links" href="{{route('empresas.index')}}">Gestion de Empresas</a></li>
                     </ul>
                 </li>
             </div>

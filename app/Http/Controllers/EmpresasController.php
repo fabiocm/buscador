@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Empresa;
+use App\PalabraClave;
+use App\Sucursal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class EmpresasController extends Controller
 {
@@ -14,7 +18,14 @@ class EmpresasController extends Controller
      */
     public function index()
     {
-        return view('empresa.template.partials.nav_partial');
+        $empresas = Empresa::all();
+        $empresas->each(function($var){
+            $var['nombre'] = $var->nombre;
+            $var['descripcion'] = $var->descripcion;
+        });
+
+
+        return view('empresa.ver_empresas',['empresas' => $empresas]);
     }
 
     /**
@@ -32,11 +43,35 @@ class EmpresasController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required|numeric',
+            'palabras_clave' => 'required',
+        ]);
+        $empresa = new Empresa($request->all());
+        $sucursal = new Sucursal($request->all());
+        $palabras_claves = explode(',', $request->palabras_clave);
+
+
+
+        if ($empresa->save()){
+            $sucursal->empresa_id = $empresa->id;
+            if ($sucursal->save())
+                for($i = 0; $i < count($palabras_claves);$i++){
+                    $palabras_clave = new PalabraClave();
+                    $palabras_clave->palabra = $palabras_claves[$i];
+                    $palabras_clave->empresa_id = $empresa->id;
+                    $palabras_clave->save();
+                }
+            flash('La empresa fue guardada correctamente','info');
+        }
+        return Redirect::route('empresas.create');
     }
 
     /**

@@ -42,7 +42,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones <span></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{route('empresas.create')}}"><i class="lnr lnr-user"></i> <span>Registrar Empresa</span></a></li>
-                        <li><a href="#"><i class="lnr lnr-cog"></i> <span>Gestion de Empresas</span></a></li>
+                        <li><a href="{{route('empresas.index')}}"><i class="lnr lnr-cog"></i> <span>Gestion de Empresas</span></a></li>
 
                     </ul>
                 </li>

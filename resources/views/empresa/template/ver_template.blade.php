@@ -1,4 +1,4 @@
-@extends('admin.template.admin_template')
+@extends('empresa.template.partials.nav_partial')
 @section('content')
 <body>
 
