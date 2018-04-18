@@ -1,9 +1,9 @@
 $(document).ready(function(){
   var geocoder = new google.maps.Geocoder();
 
-  var latLng = new google.maps.LatLng(-34.397, 150.644);
+  var latLng = new google.maps.LatLng(-17.783261784915865, -63.18217782929685);
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
+    zoom: 12,
     center: latLng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
