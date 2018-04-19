@@ -23,3 +23,8 @@ Route::get('/sucursales/nueva/{id}',[
     'as' => 'sucursales.nueva',
     'uses' => 'SucursalesController@nueva'
 ]);
+
+Route::get('/busqueda/',[
+    'as' => 'busqueda.buscar',
+    'uses' => 'BuscadorController@busqueda'
+]);

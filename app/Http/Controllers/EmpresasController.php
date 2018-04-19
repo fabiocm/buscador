@@ -127,6 +127,7 @@ class EmpresasController extends Controller
             'palabras_clave' => 'required',
         ]);
         $empresa = Empresa::find($id);
+        $empresa->fill($request->all());
         $palabras_claves = explode(',', $request->palabras_clave);
         PalabraClave::where('empresa_id',$empresa->id)->delete();
         if ($empresa->save()){

@@ -15,7 +15,7 @@ class Empresa extends Model
     ];
 
     protected $hidden = [
-        'id'
+
     ];
 
     public function palabraclave() {
