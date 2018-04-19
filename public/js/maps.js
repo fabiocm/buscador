@@ -118,19 +118,37 @@ function updateMarkerAddress(str) {
               mapTypeId: google.maps.MapTypeId.ROADMAP
           });
         for(i=0;i<sucursales;i++){
-            var lat = document.getElementById('latitud'+i).value;
-            var long = document.getElementById('longitud'+i).value;
-            var nombre = document.getElementById('nombre'+i).value;
-            var telefono = document.getElementById('telefono'+i).value;
-            var latLng = new google.maps.LatLng(lat, long);
-            var marker = new google.maps.Marker({
-                position: latLng,
-                title: nombre + ' telefono: '+ telefono,
-                map: map,
-                draggable: false
-            });
+            (function () {
+                var lat = document.getElementById('latitud'+i).value;
+                var long = document.getElementById('longitud'+i).value;
+                var nombre = document.getElementById('nombre'+i).value;
+                var telefono = document.getElementById('telefono'+i).value;
+                var latLng = new google.maps.LatLng(lat, long);
+                var infowincontent = document.createElement('div');
+                var strong = document.createElement('strong');
+                strong.textContent = nombre;
+                infowincontent.appendChild(strong);
+                infowincontent.appendChild(document.createElement('br'));
+                var text = document.createElement('text');
+                text.textContent = telefono;
+                infowincontent.appendChild(text);
 
-        }
-
+                var marker = new google.maps.Marker({
+                    position: latLng,
+                    title: nombre + ' telefono: '+ telefono,
+                    map: map,
+                    draggable: false
+                });
+                var infoWindow = new google.maps.InfoWindow;
+                marker.addListener('click', function() {
+                    infoWindow.setContent(infowincontent);
+                    infoWindow.open(map, marker);
+                });
+                google.maps.event.addListener(map, 'click', function() {
+                    infoWindow.close();
+                });
+            })();
+        };
     }
+    google.maps.event.addDomListener(window, 'load', load);
 });
