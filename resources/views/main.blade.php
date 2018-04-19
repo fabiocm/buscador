@@ -58,23 +58,25 @@
             BUSCADOR
         </div>
     </div>
+    <form role="search" action="{{url('/searchredirect/')}}">
     <div class="container" style="margin-top: -25%">
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
                 <div id="imaginary_container">
                     <div class="input-group stylish-input-group">
-                        {!! Form::open(['route' => 'busqueda.buscar','method' => 'GET', 'class' => 'form-horizontal',
-                        'enctype'=>'multipart/form-data']) !!}
-                        <input type="text" class="form-control" name="texto" placeholder="Buscar" >
-                        {!! Form::close() !!}
-                        <span class="input-group-addon">
+
+
+                         <input type="text" class="form-control" name="search" placeholder="Buscar" >
+
+                         <span class="input-group-addon">
                             <button type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    </form>

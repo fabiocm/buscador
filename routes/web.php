@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Input;
 
 Route::get('/', function () {
     return view('main');
@@ -24,7 +25,13 @@ Route::get('/sucursales/nueva/{id}',[
     'uses' => 'SucursalesController@nueva'
 ]);
 
-Route::get('/busqueda/',[
-    'as' => 'busqueda.buscar',
-    'uses' => 'BuscadorController@busqueda'
-]);
+Route::get('/searchredirect', function(){
+
+    /* Nuevo: si el argumento search está vacío regresar a la página anterior */
+    if (empty(Input::get('search'))) return redirect()->back();
+
+    $search = urlencode(e(Input::get('search')));
+    $route = "/search/$search";
+    return redirect($route);
+});
+Route::get("/search/{search}", "BuscadorController@busqueda");
