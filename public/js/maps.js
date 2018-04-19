@@ -1,7 +1,9 @@
 $(document).ready(function(){
   var geocoder = new google.maps.Geocoder();
-    var lat = document.getElementById('latitud').value;
-    var long = document.getElementById('longitud').value;
+    var sucursales = document.getElementById('cant_sucursales').value;
+    if(sucursales == 0){
+        var lat = document.getElementById('latitud').value;
+        var long = document.getElementById('longitud').value;
   if(lat != '' || long != ''){
       var latLng = new google.maps.LatLng(lat, long);
   }else{
@@ -106,5 +108,29 @@ function updateMarkerAddress(str) {
   infoWindow.setContent(browserHasGeolocation ?
                         'Error: La geolocalización fallo.' :
                         'Error: Tu navegador no soporta la geolocalización.');}*/
+    }else{
 
+        var latLng = new google.maps.LatLng(-17.783261784915865, -63.18217782929685);
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 12,
+              center: latLng,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+        for(i=0;i<sucursales;i++){
+            var lat = document.getElementById('latitud'+i).value;
+            var long = document.getElementById('longitud'+i).value;
+            var nombre = document.getElementById('nombre'+i).value;
+            var telefono = document.getElementById('telefono'+i).value;
+            var latLng = new google.maps.LatLng(lat, long);
+            var marker = new google.maps.Marker({
+                position: latLng,
+                title: nombre + ' telefono: '+ telefono,
+                map: map,
+                draggable: false
+            });
+
+        }
+
+    }
 });

@@ -55,45 +55,57 @@
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
-
+                <?php
+                $currentPage = $sucursales->currentPage(); //Página actual
+                $maxPages = $currentPage + 3; //Máxima numeración de páginas
+                $firstPage = 1; //primera página
+                $lastPage = $sucursales->lastPage(); //última página
+                $nextPage = $currentPage+1; //Siguiente página
+                $forwardPage = $currentPage-1; //Página anterior
+                $sucursales->setPath('');
+                ?>
+                <ul class="pagination">
+                    <!-- Botón para navegar a la primera página -->
+                    <li class="@if($currentPage==$firstPage){{'disabled'}}@endif">
+                        <a href="@if($currentPage>1){{$sucursales->url($firstPage)}}@else{{'#'}}@endif" class='btn'>Primera</a>
+                    </li>
+                    <!-- Botón para navegar a la página anterior -->
+                    <li class="@if($currentPage==$firstPage){{'disabled'}}@endif">
+                        <a href="@if($currentPage>1){{$sucursales->url($forwardPage)}}@else{{'#'}}@endif" class='btn'>«</a>
+                    </li>
+                    <!-- Mostrar la numeración de páginas, partiendo de la página actual hasta el máximo definido en $maxPages -->
+                    @for($x=$currentPage;$x<$maxPages;$x++)
+                        @if($x <= $lastPage)
+                            <li class="@if($x==$currentPage){{'active'}}@endif">
+                                <a href="{{$sucursales->url($x)}}" class='btn'>{{$x}}</a>
+                            </li>
+                    @endif
+                @endfor
+                <!-- Botón para navegar a la pagina siguiente -->
+                    <li class="@if($currentPage==$lastPage){{'disabled'}}@endif">
+                        <a href="@if($currentPage<$lastPage){{$sucursales->url($nextPage)}}@else{{'#'}}@endif" class='btn'>»</a>
+                    </li>
+                    <!-- Botón para navegar a la última página -->
+                    <li class="@if($currentPage==$lastPage){{'disabled'}}@endif">
+                        <a href="@if($currentPage<$lastPage){{$sucursales->url($lastPage)}}@else{{'#'}}@endif" class='btn'>Última</a>
+                    </li>
+                </ul>
             </div>
-            <?php
-            $currentPage = $sucursales->currentPage(); //Página actual
-            $maxPages = $currentPage + 3; //Máxima numeración de páginas
-            $firstPage = 1; //primera página
-            $lastPage = $sucursales->lastPage(); //última página
-            $nextPage = $currentPage+1; //Siguiente página
-            $forwardPage = $currentPage-1; //Página anterior
-            $sucursales->setPath('');
-            ?>
-            <ul class="pagination">
-                <!-- Botón para navegar a la primera página -->
-                <li class="@if($currentPage==$firstPage){{'disabled'}}@endif">
-                    <a href="@if($currentPage>1){{$sucursales->url($firstPage)}}@else{{'#'}}@endif" class='btn'>Primera</a>
-                </li>
-                <!-- Botón para navegar a la página anterior -->
-                <li class="@if($currentPage==$firstPage){{'disabled'}}@endif">
-                    <a href="@if($currentPage>1){{$sucursales->url($forwardPage)}}@else{{'#'}}@endif" class='btn'>«</a>
-                </li>
-                <!-- Mostrar la numeración de páginas, partiendo de la página actual hasta el máximo definido en $maxPages -->
-                @for($x=$currentPage;$x<$maxPages;$x++)
-                    @if($x <= $lastPage)
-                        <li class="@if($x==$currentPage){{'active'}}@endif">
-                            <a href="{{$sucursales->url($x)}}" class='btn'>{{$x}}</a>
-                        </li>
-                @endif
-            @endfor
-            <!-- Botón para navegar a la pagina siguiente -->
-                <li class="@if($currentPage==$lastPage){{'disabled'}}@endif">
-                    <a href="@if($currentPage<$lastPage){{$sucursales->url($nextPage)}}@else{{'#'}}@endif" class='btn'>»</a>
-                </li>
-                <!-- Botón para navegar a la última página -->
-                <li class="@if($currentPage==$lastPage){{'disabled'}}@endif">
-                    <a href="@if($currentPage<$lastPage){{$sucursales->url($lastPage)}}@else{{'#'}}@endif" class='btn'>Última</a>
-                </li>
-            </ul>
+
             <div id="tab2" class="mtab_content" style="display: none;">
-                <p>Tab content 2</p>
+                <div id="map"></div>
+                <div id="infoPanel" type="hidden">
+                    <b >Dirección aproximada:</b>
+                    <div id="address" ></div>
+                </div>
+                <input id="cant_sucursales" type="hidden" name="cant_sucursales" value="{{count($sucursales)}}"/>
+                @for($i = 0; $i<count($sucursales);$i++)
+                    <input id="nombre{{$i}}" name="nombre" type="hidden"  value="{{$sucursales[$i]->nombre}}"/>
+                    <input id="telefono{{$i}}" name="telefono" type="hidden"  value="{{$sucursales[$i]->telefono}}"/>
+                    <input id="longitud{{$i}}" name="longitud" type="hidden"  value="{{$sucursales[$i]->longitud}}"/>
+                    <input id="latitud{{$i}}" name="latitud" type="hidden"  value="{{$sucursales[$i]->latitud}}"/>
+                @endfor
+
             </div>
         </div>
     </div>
